@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <div className=" bg-theme-blue w-full  text-center">
       <section className="pt-10">
-        <div className="w-full lg:w-auto">
+        <div className="w-full lg:w-auto h-1">
           <div className="text-md text-white">
             Sản Phẩm Việt - Trải Nghiệm Việt
           </div>
