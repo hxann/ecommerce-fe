@@ -14,9 +14,7 @@ import { getDate, getTimestamp } from "../hooks/useGetTime";
 import { Label } from "../components/label";
 
 import { Textarea } from "../components/textarea";
-import {
-  createFeedbacksRequest,
-} from "../sagas/feedbackMail/feedbacksSlice";
+import { createFeedbacksRequest } from "../sagas/feedbackMail/feedbacksSlice";
 import BannerCommon from "../layout/common/BannerCommon";
 import useSetTitle from "../hooks/useSetTitle";
 
@@ -29,7 +27,7 @@ const schemaValidate = Yup.object({
   message: Yup.string().required("Vui lòng nhập số nội dung!"),
 });
 const ContactPage = () => {
-  useSetTitle('Liên hệ')
+  useSetTitle("Liên hệ");
   const dispatch = useDispatch();
   const { infoAuth } = useSelector((state) => state.auth);
   const {
@@ -54,10 +52,10 @@ const ContactPage = () => {
   return (
     <div className="bg-white">
       <BannerCommon
-        image={"./src/assets/image/banner-post.jpg"}
+        image={"./src/assets/image/contact-banner.jpg"}
         title="Liên hệ với chúng tôi"
       />
-      <div className="w-full pt-12 pb-4 mx-auto">
+      <div className="pt-12 pb-4 mx-auto overflow-hidden transition-all rounded-full">
         <div className="text-center ">
           <h5 className="relative inline-block mb-2 text-3xl font-extrabold text-primary font-dancing">
             <span className="absolute right-full border w-[80px] top-1/2 -translate-x-1/2 h-[1px] border-primary"></span>
@@ -73,29 +71,28 @@ const ContactPage = () => {
             <div className="">
               <h5 className="relative inline-block  mb-2 text-3xl font-extrabold text-primary font-dancing">
                 Facebook
-
               </h5>
 
-              <p className="mb-4 text-base">facebook.com/foodsvietblog_203</p>
+              <p className="mb-4 text-base">facebook.com/TSVN</p>
             </div>
             <div className="">
               <h5 className="relative inline-block  mb-2 text-3xl font-extrabold text-primary font-dancing">
                 Email
               </h5>
 
-              <p className="mb-4 text-base">foodsvietblog203@gmail.com</p>
+              <p className="mb-4 text-base">TruSauVietNam@gmail.com</p>
             </div>
             <div className=" text-center">
               <h5 className="relative inline-block  mb-2 text-3xl font-extrabold text-primary font-dancing">
                 Hotline
               </h5>
-              <p className="mb-4 text-base">032 884 6202</p>
+              <p className="mb-4 text-base">XXX XXX XXXX</p>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-5 mx-5 mt-10 md:grid-cols-2">
             <div className="w-full h-[370px]">
               <img
-                src="../src/assets/image/pixzolo-photography-Qtd5z7g4thc-unsplash.jpg"
+                src="../src/assets/image/contact.jpg"
                 alt=""
                 className="object-cover w-full h-full rounded-lg "
               />
@@ -174,7 +171,7 @@ const ContactPage = () => {
                 <div className="w-full px-4 py-3">
                   <button
                     type="submit"
-                    className="w-full py-4 text-lg font-semibold text-white rounded-sm bg-primary"
+                    className="w-full py-4 text-lg font-semibold text-white rounded-sm bg-theme-blue"
                   >
                     Gửi phản hồi
                   </button>
