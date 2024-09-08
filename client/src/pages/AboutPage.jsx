@@ -146,6 +146,7 @@ const AboutPage = () => {
               </h1>
             </div>
           </div>
+<<<<<<< HEAD
         </div>
       </div>
       <div className="text-center ">
@@ -207,6 +208,8 @@ const AboutPage = () => {
             alt=""
             className="mx-auto h-72 w-72 mt-8 mb-3 rounded-lg"
           />
+=======
+>>>>>>> 10a5be96c8023d68ba92e6bd956ac82b49f241ae
         </div>
       </div>
     </div>
