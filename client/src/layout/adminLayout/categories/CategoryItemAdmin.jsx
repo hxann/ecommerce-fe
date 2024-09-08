@@ -20,10 +20,17 @@ const CategoryItemAdmin = ({ data }) => {
   };
   return (
     <>
-      <tr className="border-b border-blue-gray-50 last:border-b-0" id={data?._id}>
+      <tr
+        className="border-b border-blue-gray-50 last:border-b-0"
+        id={data?._id}
+      >
         <td className={`${className} max-w-[500px]`}>
           <div className="flex items-center gap-4">
-            <Avatar lazy-src={data?.image} className='bg-primary border-none bg-opacity-5' size="lg" />
+            <Avatar
+              lazy-src={data?.image}
+              className="bg-primary border-none bg-opacity-5"
+              size="lg"
+            />
             <div className="flex-1">
               <Typography
                 variant="small"
@@ -50,15 +57,15 @@ const CategoryItemAdmin = ({ data }) => {
               data?.status === "approved"
                 ? "green"
                 : data?.status === "pending"
-                  ? "yellow"
-                  : "red"
+                ? "yellow"
+                : "red"
             }
             value={
               data?.status === "approved"
                 ? "Đã duyệt"
                 : data?.status === "pending"
-                  ? "Chờ duyệt"
-                  : "vô hiệu hóa"
+                ? "Chờ duyệt"
+                : "vô hiệu hóa"
             }
             className="py-0.5 px-2 text-[11px] font-medium inline-block"
           />

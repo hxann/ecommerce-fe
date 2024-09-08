@@ -8,16 +8,16 @@ const Breadcrumb = () => {
 
   switch (layout) {
     case "posts":
-      nameLayout = "Tin Tức";
+      nameLayout = "Bài Viết";
       break;
     case "detail":
       nameLayout = "Nội dung bài viết";
       break;
     case "categories":
-      nameLayout = "Tuyển Dụng";
+      nameLayout = "Danh mục";
       break;
     case "about":
-      nameLayout = "About US";
+      nameLayout = "Về TSVN";
       break;
     case "contact":
       nameLayout = "Liên hệ";
@@ -26,7 +26,7 @@ const Breadcrumb = () => {
       nameLayout = "Thông tin cá nhân";
       break;
     case "add-post":
-      nameLayout = "Tạo bài viết";
+      nameLayout = "Quản lý giỏ hàng";
       break;
     default:
       break;
