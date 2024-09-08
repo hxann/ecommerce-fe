@@ -19,16 +19,16 @@ import useSetTitle from "../../hooks/useSetTitle";
 
 const CustomersPageAdmin = () => {
   const { loading, customers } = useSelector((state) => state.admin);
-  useScrollToCenter('id_customer')
+  useScrollToCenter("id_customer");
   const dispatch = useDispatch();
   const handLoad = () => {
     dispatch(getCustomersAdminRequest());
   };
   useEffect(() => {
-    handLoad()
+    handLoad();
   }, []);
-  useLoadingImage(customers)
-  useSetTitle('Quản lý người dùng')
+  useLoadingImage(customers);
+  useSetTitle("Quản lý người dùng");
   return (
     <div>
       <LoadingRequest show={loading}></LoadingRequest>
@@ -36,7 +36,7 @@ const CustomersPageAdmin = () => {
         <Card>
           <CardHeader
             variant="gradient"
-            className="z-10 flex items-center justify-between p-6 mb-8 bg-primary"
+            className="z-10 flex items-center justify-between p-6 mb-8 bg-theme-blue"
           >
             <Typography variant="h6" color="white">
               Danh sách người dùng

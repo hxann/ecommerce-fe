@@ -39,7 +39,7 @@ const PageAdmin = () => {
         <Card>
           <CardHeader
             variant="gradient"
-            className="z-10 flex items-center justify-between p-6 mb-8 bg-primary"
+            className="z-10 flex items-center justify-between p-6 mb-8 bg-theme-blue"
           >
             <Typography variant="h6" color="white">
               Danh sách quản trị viên

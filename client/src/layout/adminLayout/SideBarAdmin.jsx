@@ -25,7 +25,11 @@ export function Sidebar({ brandImg, brandName, routes }) {
   const dispatch = useDispatch();
   const sidenavTypes = {
     dark: "bg-gradient-to-br from-blue-gray-800 to-blue-gray-900",
+<<<<<<< HEAD
+    white: "bg-theme-blue shadow-lg",
+=======
     white: "bg-primary shadow-lg",
+>>>>>>> 10a5be96c8023d68ba92e6bd956ac82b49f241ae
     transparent: "bg-transparent",
   };
   const { showSidebar } = useSelector((state) => state.global);
@@ -134,7 +138,11 @@ export function Sidebar({ brandImg, brandName, routes }) {
 
 Sidebar.defaultProps = {
   brandImg: "../src/assets/image/user.png",
+<<<<<<< HEAD
+  brandName: "TSVN",
+=======
   brandName: "FOODSVIET",
+>>>>>>> 10a5be96c8023d68ba92e6bd956ac82b49f241ae
 };
 
 Sidebar.propTypes = {
