@@ -53,8 +53,7 @@ const Setting = () => {
               Thông tin người dùng
             </Link>
             <Link className={className} to={"/add-post"}>
-              <DocumentPlusIcon {...icon} />
-              Quản lý giỏ hàng
+              <DocumentPlusIcon {...icon} /> Giỏ hàng
             </Link>
             <hr />
             <div

@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
+import { FiSearch } from "react-icons/fi";
 import Section from "../layout/common/Section";
 import { Heading } from "../components/heading";
 import ListSlide from "../layout/slide/ListSlide";
@@ -10,6 +12,46 @@ import LoadingRequest from "../layout/loading/LoadingRequest";
 import { postsRequest } from "../sagas/posts/postsSlice";
 import { Link } from "react-router-dom";
 import useSetTitle from "../hooks/useSetTitle";
+import { useNavigate } from "react-router-dom";
+
+const products = [
+  {
+    id: 1,
+    name: "Garden Insect Spray",
+    price: "398.000 VND",
+    imageUrl: "./src/assets/image/1.png",
+  },
+  {
+    id: 2,
+    name: "Bioneem",
+    price: "398.000 VND",
+    imageUrl: "./src/assets/image/2.png",
+  },
+  {
+    id: 3,
+    name: "Garden Insect Spray",
+    price: "398.000 VND",
+    imageUrl: "./src/assets/image/1.png",
+  },
+  {
+    id: 4,
+    name: "Bioneem",
+    price: "398.000 VND",
+    imageUrl: "./src/assets/image/2.png",
+  },
+  {
+    id: 5,
+    name: "Garden Insect Spray",
+    price: "398.000 VND",
+    imageUrl: "./src/assets/image/1.png",
+  },
+  {
+    id: 6,
+    name: "Bioneem",
+    price: "398.000 VND",
+    imageUrl: "./src/assets/image/2.png",
+  },
+];
 
 const HomePage = () => {
   // Gửi dữ liệu đến server
@@ -27,79 +69,178 @@ const HomePage = () => {
     dispatch(postsRequest());
   }, [token, dispatch, tokenLocal]);
 
+  const [cart, setCart] = useState(
+    () => JSON.parse(localStorage.getItem("cart")) || []
+  ); // Retrieve cart from localStorage
+
+  const navigate = useNavigate(); // For redirecting to the cart page
+
+  const [searchTerm, setSearchTerm] = useState("");
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Filter products based on search term
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const [selectedProduct, setSelectedProduct] = useState(null); // State to track selected product
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+
+  const [quantity, setQuantity] = useState(Array(products.length).fill(1));
+
+  const handleIncrease = (index) => {
+    const newQuantity = [...quantity];
+    newQuantity[index] += 1;
+    setQuantity(newQuantity);
+  };
+
+  const handleDecrease = (index) => {
+    const newQuantity = [...quantity];
+    if (newQuantity[index] > 1) newQuantity[index] -= 1;
+    setQuantity(newQuantity);
+  };
+
+  // Add product to cart and redirect to cart page
+  const addToCart = (product) => {
+    const existingItem = cart.find((item) => item.id === product.id);
+
+    if (existingItem) {
+      // If the item already exists, increase its quantity
+      const updatedCart = cart.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } else {
+      // If the item doesn't exist, add it to the cart
+      const updatedCart = [...cart, { ...product, quantity: 1 }];
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
+  };
+
+  // Open the modal with the product details
+  const handleViewDetails = (product) => {
+    setSelectedProduct(product); // Set the selected product details
+    setIsModalOpen(true); // Open the modal
+  };
+
+  // Close the modal
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div>
       <LoadingRequest show={loading}></LoadingRequest>
       <Section className="mb-10">
         <Banner></Banner>
+        <Heading isHeading className="mb-10 text-center">
+          <div className="w-full h-20 bg-theme-blue pt-6 text-white">
+            {" "}
+            Sản Phẩm{" "}
+          </div>
+        </Heading>
       </Section>
-      <Heading isHeading className="mb-10 mx-2 text-center">
-        - Sản Phẩm -
-      </Heading>
-      <Section className=" bg-[#f7f7f7] mb-48 relative">
-        <div
-          className="w-full h-auto bg-[#f7f7f7] bg-fixed p-2 md:p-10 bg-cover relative"
-          style={{ backgroundImage: "url(./src/assets/image/banner4.jpg)" }}
-        >
-          <div className="bg-black opacity-80 inset-0 absolute"></div>
-          <div className="page-content my-28 mt-10">
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 gap-y-10 md:gap-10 mb-14 ">
-              {categories?.length > 0 &&
-                categories?.slice(0, 4).map((item) => (
-                  <Link
-                    to={`/categories/${item?.slug}`}
-                    key={item._id}
-                    className="h-[300px] shadow-2xl md:h-[394px] relative rounded-md"
-                  >
-                    <img
-                      lazy-src={item?.image}
-                      alt=""
-                      className="w-full h-full object-cover rounded-md"
-                    />
-                    <div
-                      className="absolute bottom-0 translate-y-1/2 w-auto min-w-[80%]  
-                                    rounded-md px-2 py-1 left-1/2 -translate-x-2/4 bg-primary text-white
-                                    font-medium text-center text-xs md:text-base"
-                    >
-                      {item?.title}
-                    </div>
-                  </Link>
-                ))}
-            </div>
+      <div className="min-h-screen bg-theme-blue p-4">
+        {/* Search Bar */}
+        <div className="flex justify-center mb-6">
+          <div className="relative w-full max-w-lg">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="w-full py-2 px-4 rounded-full bg-gray-200 text-black focus:outline-none"
+            />
+            <span className="absolute right-3 top-2">
+              <FiSearch className="text-black" />
+            </span>
           </div>
         </div>
-        <Section className=" page-content absolute -bottom-14 left-1/2 -translate-x-1/2 translate-y-1/2">
-          <ListSlide
-            className={"text-black"}
-            data={categories?.slice(3)}
-          ></ListSlide>
-        </Section>
-      </Section>
-      <div className="lg:px-0">
-        <Heading isHeading className="mb-10 mx-2 text-center">
-          - Bài viết mới nhất -
-        </Heading>
-        <Section className="page- ">
-          <ListPostHome data={post?.slice(0, 10)} isHome></ListPostHome>
-        </Section>
-        <Heading isHeading className="mb-10 mx-2 text-center">
-          - Người dùng nỗi bật -
-        </Heading>
-        <Section className="bg-[#f7f7f7] py-10">
-          <div className="page-content">
-            <ListSlide
-              isCustomer={true}
-              className={"text-black page-content"}
-              data={customers}
-            ></ListSlide>
+
+        {/* Product Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredProducts.map((product, index) => (
+            <div key={product.id} className="bg-[#0076b636] p-4  shadow-md">
+              <img
+                src={product.imageUrl}
+                alt={product.name}
+                className="w-full h-40 object-contain mb-4"
+              />
+              <div className="text-white text-center mb-2 text-lg font-bold">
+                {product.name}
+              </div>
+              <div className="text-white text-center mb-4 text-lg">
+                {product.price}
+              </div>
+              <div className="flex items-center justify-center mb-4">
+                <button
+                  onClick={() => handleDecrease(index)}
+                  className="bg-white text-bleck px-2 py-1 rounded-l-md"
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  value={quantity[index]}
+                  readOnly
+                  className="w-15 text-center h-8 text-black"
+                />
+                <button
+                  onClick={() => handleIncrease(index)}
+                  className="bg-white text-black px-2 py-1 rounded-r-md"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                onClick={() => {
+                  addToCart(product);
+                  navigate("/add-post"); // Navigate to the cart page
+                }}
+                className="bg-white text-black w-full py-2 rounded-md mb-2"
+              >
+                Thêm vào giỏ hàng
+              </button>
+
+              <button
+                className="bg-white text-black w-full py-2 rounded-md"
+                onClick={() => handleViewDetails(product)} // Open modal on click
+              >
+                Xem chi tiết
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Modal (Popup Window) */}
+        {isModalOpen && selectedProduct && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="bg-white p-6 rounded-lg max-w-md w-full">
+              <h2 className="text-2xl font-bold mb-4">
+                {selectedProduct.name}
+              </h2>
+              <img
+                src={selectedProduct.imageUrl}
+                alt={selectedProduct.name}
+                className="w-full h-40 object-contain mb-4"
+              />
+              <p className="mb-4">{selectedProduct.description}</p>
+              <p className="mb-4 text-lg font-semibold">
+                {selectedProduct.price}
+              </p>
+              <button
+                className="bg-theme-blue text-white px-4 py-2 rounded-md w-full"
+                onClick={handleCloseModal} // Close modal on click
+              >
+                Đóng
+              </button>
+            </div>
           </div>
-        </Section>
-        <Section className="page-content ">
-          <Heading isHeading className="mb-10 mx-2 text-center">
-            - Bài viết -
-          </Heading>
-          <ListPost data={post?.slice(10)}></ListPost>
-        </Section>
+        )}
       </div>
     </div>
   );

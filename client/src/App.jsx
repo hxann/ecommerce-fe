@@ -9,11 +9,13 @@ import BASE_URL from "./connect";
 import { customersRequest } from "./sagas/customers/customersSlice";
 import { ThemeProvider } from "@material-tailwind/react";
 import LoadingPage from "./layout/loading/LoadingPage";
+import Modal from "react-modal";
 function App() {
   const { token, infoAuth } = useSelector((state) => state.auth);
   const { errorGlobal, notifyGlobal, socket } = useSelector(
     (state) => state.global
   );
+  Modal.setAppElement("#root");
   const dispatch = useDispatch();
   useEffect(() => {
     if (errorGlobal) toast.error(errorGlobal);
