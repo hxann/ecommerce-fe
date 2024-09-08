@@ -149,11 +149,7 @@ const AddNewPosts = () => {
       <LoadingRequest show={loadingPost} />
       <Section className="mb-1">
         <BannerCommon
-<<<<<<< HEAD
           image={"./src/assets/image/cart.jpg"}
-=======
-          image={"./src/assets/image/bg-add-post.jpg"}
->>>>>>> 10a5be96c8023d68ba92e6bd956ac82b49f241ae
           title={"Quản Lý Giỏ hàng"}
         />
       </Section>

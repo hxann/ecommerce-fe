@@ -137,7 +137,6 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
-
           <div className="grid grid-cols-2 px-5 h-auto bg-theme-blue mx-3 rounded-lg mt-1">
             <div className="bg-[#0076b636] rounded-lg my-5">
               <div>
@@ -166,7 +165,7 @@ const AboutPage = () => {
               />
             </div>
           </div>
-<<<<<<< HEAD
+          ------------------
         </div>
       </div>
       <div className="text-center ">
@@ -228,8 +227,6 @@ const AboutPage = () => {
             alt=""
             className="mx-auto h-72 w-72 mt-8 mb-3 rounded-lg"
           />
-=======
->>>>>>> 10a5be96c8023d68ba92e6bd956ac82b49f241ae
         </div>
       </div>
       {/*<div className="grid grid-cols-1 mx-6 md:grid-cols-2 lg:grid-cols-4 gap-x-5 bg-theme-blue h-fit">
