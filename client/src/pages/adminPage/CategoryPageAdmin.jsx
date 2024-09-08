@@ -20,15 +20,15 @@ import useSetTitle from "../../hooks/useSetTitle";
 const CategoryPageAdmin = () => {
   const { loading, categories } = useSelector((state) => state.admin);
   const dispatch = useDispatch();
-  useScrollToCenter('id_category')
+  useScrollToCenter("id_category");
   const handLoad = () => {
     dispatch(getCategoriesAdminRequest());
   };
   useEffect(() => {
-    handLoad()
+    handLoad();
   }, []);
-  useLoadingImage(categories)
-  useSetTitle('Quản lý danh mục')
+  useLoadingImage(categories);
+  useSetTitle("Quản lý danh mục");
   return (
     <div>
       <LoadingRequest show={loading}></LoadingRequest>
@@ -36,7 +36,7 @@ const CategoryPageAdmin = () => {
         <Card>
           <CardHeader
             variant="gradient"
-            className="z-10 flex items-center justify-between p-6 mb-8 bg-primary"
+            className="z-10 flex items-center justify-between p-6 mb-8 bg-theme-blue"
           >
             <Typography variant="h6" color="white">
               Danh sách bài viết

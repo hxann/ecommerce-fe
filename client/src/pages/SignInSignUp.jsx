@@ -48,8 +48,8 @@ const SignInSignUp = () => {
           <div className="content mx-auto">
             <h3>Bạn là người mới? </h3>
             <p>
-              Hãy đăng ký 1 tài khoản để có những trải nghiệm chất lượng với các
-              sản phẩm của chúng tôi!
+              Đăng ký tài khoản để có trải nghiệm chất lượng với các sản phẩm
+              của chúng tôi!
             </p>
             <div className="flex flex-col items-center justify-center gap-10 ">
               <button

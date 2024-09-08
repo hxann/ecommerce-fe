@@ -22,16 +22,16 @@ import useSetTitle from "../../hooks/useSetTitle";
 
 const PageAdmin = () => {
   const { loading, admin, tokenAdmin } = useSelector((state) => state.admin);
-  useScrollToCenter('id_admin')
+  useScrollToCenter("id_admin");
   const dispatch = useDispatch();
   const handLoad = () => {
     dispatch(getAllAdminRequest());
   };
   useEffect(() => {
-    handLoad()
+    handLoad();
   }, []);
-  useLoadingImage(admin)
-  useSetTitle('Quản lý quản trị viên')
+  useLoadingImage(admin);
+  useSetTitle("Quản lý quản trị viên");
   return (
     <div>
       <LoadingRequest show={loading}></LoadingRequest>
@@ -39,7 +39,7 @@ const PageAdmin = () => {
         <Card>
           <CardHeader
             variant="gradient"
-            className="z-10 flex items-center justify-between p-6 mb-8 bg-primary"
+            className="z-10 flex items-center justify-between p-6 mb-8 bg-theme-blue"
           >
             <Typography variant="h6" color="white">
               Danh sách quản trị viên

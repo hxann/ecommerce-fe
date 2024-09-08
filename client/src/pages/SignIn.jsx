@@ -26,7 +26,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const naviagte = useNavigate();
   const handleBackPage = () => {
-    naviagte("/");
+    naviagte("/about");
   };
   const {
     handleSubmit,

@@ -35,6 +35,7 @@ import {
   toggleAddAdmin,
   toggleAddCategory,
   toggleAddCustomer,
+  toggleAddNewPost,
   toggleAddPost,
 } from "../sagas/global/globalSlice";
 import AddCustomerAdmin from "../layout/adminLayout/customers/AddCustomerAdmin";
@@ -45,6 +46,8 @@ import BASE_URL from "../connect";
 import SearchAdmin from "../layout/adminLayout/SearchAdmin";
 import { FeedbackRequest } from "../sagas/feedbackMail/feedbacksSlice";
 import CommentPostDetailAdmin from "../layout/adminLayout/comments/CommentPostDetailAdmin";
+import AddNewPost from "../layout/adminLayout/posts/AddNewPost";
+
 export function Dashboard() {
   const navLink = [
     {
@@ -79,6 +82,14 @@ export function Dashboard() {
         handleToggleAdmin();
       },
     },
+    {
+      id: 5,
+      title: "Thêm Sản Phẩm",
+      icon: <DocumentPlusIcon className="w-5 h-5" />,
+      onclick: () => {
+        handleToggleAddNewPost();
+      },
+    },
   ];
   const labelProps = {
     variant: "small",
@@ -86,14 +97,19 @@ export function Dashboard() {
     className: `absolute top-2/4 w-[150px] text-white p-1 bg-primary/90 rounded-full
              -translate-y-2/4 -translate-x-3/4 font-normal  `,
   };
-  const { tokenAdmin, infoAdmin, admin, role } = useSelector((state) => state.admin);
+  const { tokenAdmin, infoAdmin, admin, role } = useSelector(
+    (state) => state.admin
+  );
   const dataAdmin = admin?.find((ad) => ad._id === infoAdmin?._id);
-  const roleAdmin = role?.find((ro) => ro.title === 'Admin');
-  const isAdmin = dataAdmin?.role === roleAdmin?._id
+  const roleAdmin = role?.find((ro) => ro.title === "Admin");
+  const isAdmin = dataAdmin?.role === roleAdmin?._id;
   const { socketAdmin } = useSelector((state) => state.global);
   const dispatch = useDispatch();
   const handleToggleAddPost = () => {
     dispatch(toggleAddPost());
+  };
+  const handleToggleAddNewPost = () => {
+    dispatch(toggleAddNewPost());
   };
   const handleToggleCategory = () => {
     dispatch(toggleAddCategory());
@@ -159,8 +175,9 @@ export function Dashboard() {
               <SpeedDialAction
                 onClick={nav.onclick}
                 key={nav.id}
-                className={`relative text-white bg-primary/90 ${!isAdmin && nav.id === 4 ? "hidden" : ""
-                  }`}
+                className={`relative text-white bg-primary/90 ${
+                  !isAdmin && nav.id === 4 ? "hidden" : ""
+                }`}
               >
                 {nav.icon}
                 <Typography {...labelProps}>{nav.title}</Typography>
@@ -169,6 +186,7 @@ export function Dashboard() {
           </SpeedDialContent>
         </SpeedDial>
       </div>
+      <AddNewPost></AddNewPost>
       <AddPostAdmin />
       <AddCategoryAdmin />
       <AddCustomerAdmin />

@@ -15,8 +15,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { icon } from "../../ADMIN/routes";
 const SpeedDialAdmin = ({
-  handleUpdateStatus = () => { },
-  handleEdit = () => { },
+  handleUpdateStatus = () => {},
+  handleEdit = () => {},
   detail = {},
   idEntity = "",
 }) => {
@@ -26,10 +26,7 @@ const SpeedDialAdmin = ({
       <div className="flex gap-5 items-center">
         <SpeedDial>
           <SpeedDialHandler>
-            <IconButton
-              size="lg"
-              className="rounded-full border-white border"
-            >
+            <IconButton size="lg" className="rounded-full border-white border">
               <PlusIcon className="h-5 w-5 transition-transform group-hover:rotate-45" />
             </IconButton>
           </SpeedDialHandler>
@@ -38,36 +35,42 @@ const SpeedDialAdmin = ({
               <div className="flex flex-col gap-y-1 p-1 items-center justify-center">
                 <SpeedDialAction
                   onClick={() => handleUpdateStatus("destroy")}
-                  className={`bg-red-500 text-white ${detail?.status === "destroy" ? "hidden" : ""
-                    }`}
+                  className={`bg-red-500 text-white ${
+                    detail?.status === "destroy" ? "hidden" : ""
+                  }`}
                 >
                   <ArchiveBoxXMarkIcon {...icon} />
                 </SpeedDialAction>
                 <SpeedDialAction
                   onClick={() => handleUpdateStatus("approved")}
                   className={`bg-green-500 text-white
-                                        ${detail?.status === "approved"
-                      ? "hidden"
-                      : ""
-                    }`}
+                                        ${
+                                          detail?.status === "approved"
+                                            ? "hidden"
+                                            : ""
+                                        }`}
                 >
                   <ArrowUpTrayIcon {...icon} />
                 </SpeedDialAction>
               </div>
             )}
-            {idEntity ? idEntity === infoAdmin?._id && (
+            {idEntity ? (
+              idEntity === infoAdmin?._id && (
+                <SpeedDialAction
+                  className="bg-primary text-white"
+                  onClick={handleEdit}
+                >
+                  <PencilSquareIcon {...icon} />
+                </SpeedDialAction>
+              )
+            ) : (
               <SpeedDialAction
                 className="bg-primary text-white"
                 onClick={handleEdit}
               >
                 <PencilSquareIcon {...icon} />
               </SpeedDialAction>
-            ) : <SpeedDialAction
-              className="bg-primary text-white"
-              onClick={handleEdit}
-            >
-              <PencilSquareIcon {...icon} />
-            </SpeedDialAction>}
+            )}
           </SpeedDialContent>
         </SpeedDial>
       </div>
