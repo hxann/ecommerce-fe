@@ -22,16 +22,16 @@ import useSetTitle from "../../hooks/useSetTitle";
 
 const PageAdmin = () => {
   const { loading, admin, tokenAdmin } = useSelector((state) => state.admin);
-  useScrollToCenter('id_admin')
+  useScrollToCenter("id_admin");
   const dispatch = useDispatch();
   const handLoad = () => {
     dispatch(getAllAdminRequest());
   };
   useEffect(() => {
-    handLoad()
+    handLoad();
   }, []);
-  useLoadingImage(admin)
-  useSetTitle('Quản lý quản trị viên')
+  useLoadingImage(admin);
+  useSetTitle("Quản lý quản trị viên");
   return (
     <div>
       <LoadingRequest show={loading}></LoadingRequest>
