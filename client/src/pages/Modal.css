@@ -1,0 +1,23 @@
+/* Modal.css */
+.modal {
+  position: absolute; /* hoặc fixed */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-width: 500px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  z-index: 1000; /* Đảm bảo modal nằm trên các phần tử khác */
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Đảm bảo overlay nằm dưới modal */
+}
