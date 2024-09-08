@@ -19,45 +19,6 @@ const products = [
     id: 1,
     name: "Garden Insect Spray",
     price: "398.000 VND",
-    imageUrl: "./src/assets/image/1.png",
-  },
-  {
-    id: 2,
-    name: "Bioneem",
-    price: "398.000 VND",
-    imageUrl: "./src/assets/image/2.png",
-  },
-  {
-    id: 3,
-    name: "Garden Insect Spray",
-    price: "398.000 VND",
-    imageUrl: "./src/assets/image/1.png",
-  },
-  {
-    id: 4,
-    name: "Bioneem",
-    price: "398.000 VND",
-    imageUrl: "./src/assets/image/2.png",
-  },
-  {
-    id: 5,
-    name: "Garden Insect Spray",
-    price: "398.000 VND",
-    imageUrl: "./src/assets/image/1.png",
-  },
-  {
-    id: 6,
-    name: "Bioneem",
-    price: "398.000 VND",
-    imageUrl: "./src/assets/image/2.png",
-  },
-];
-
-const products = [
-  {
-    id: 1,
-    name: "Garden Insect Spray",
-    price: "398.000 VND",
     imageUrl: "./src/assets/image/1.jpg",
   },
   {
@@ -108,8 +69,6 @@ const HomePage = () => {
     dispatch(postsRequest());
   }, [token, dispatch, tokenLocal]);
 
-<<<<<<< HEAD
-=======
   const [cart, setCart] = useState(
     () => JSON.parse(localStorage.getItem("cart")) || []
   ); // Retrieve cart from localStorage
@@ -130,7 +89,6 @@ const HomePage = () => {
   const [selectedProduct, setSelectedProduct] = useState(null); // State to track selected product
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
 
->>>>>>> main
   const [quantity, setQuantity] = useState(Array(products.length).fill(1));
 
   const handleIncrease = (index) => {
@@ -145,8 +103,6 @@ const HomePage = () => {
     setQuantity(newQuantity);
   };
 
-<<<<<<< HEAD
-=======
   // Add product to cart and redirect to cart page
   const addToCart = (product) => {
     const existingItem = cart.find((item) => item.id === product.id);
@@ -176,7 +132,7 @@ const HomePage = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
->>>>>>> main
+
   return (
     <div>
       <LoadingRequest show={loading}></LoadingRequest>
@@ -189,22 +145,16 @@ const HomePage = () => {
           </div>
         </Heading>
       </Section>
-<<<<<<< HEAD
+
       <div className="min-h-screen bg-theme-blue p-4 mb-10 rounded-lg">
-=======
-      <div className="min-h-screen bg-theme-blue p-4">
->>>>>>> main
         {/* Search Bar */}
         <div className="flex justify-center mb-6">
           <div className="relative w-full max-w-lg">
             <input
               type="text"
               placeholder="Search..."
-<<<<<<< HEAD
-=======
               value={searchTerm}
               onChange={handleSearchChange}
->>>>>>> main
               className="w-full py-2 px-4 rounded-full bg-gray-200 text-black focus:outline-none"
             />
             <span className="absolute right-3 top-2">
@@ -214,18 +164,13 @@ const HomePage = () => {
         </div>
 
         {/* Product Grid */}
-<<<<<<< HEAD
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {products.map((product, index) => (
             <div
               key={product.id}
               className="bg-[#0076b636] p-4 rounded-lg shadow-md"
             >
-=======
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredProducts.map((product, index) => (
-            <div key={product.id} className="bg-[#0076b636] p-4  shadow-md">
->>>>>>> main
               <img
                 src={product.imageUrl}
                 alt={product.name}
@@ -240,11 +185,7 @@ const HomePage = () => {
               <div className="flex items-center justify-center mb-4">
                 <button
                   onClick={() => handleDecrease(index)}
-<<<<<<< HEAD
                   className="bg-white text-black px-2 py-1 rounded-l-md"
-=======
-                  className="bg-white text-bleck px-2 py-1 rounded-l-md"
->>>>>>> main
                 >
                   -
                 </button>
@@ -252,11 +193,7 @@ const HomePage = () => {
                   type="text"
                   value={quantity[index]}
                   readOnly
-<<<<<<< HEAD
                   className="w-10 text-center text-black h-8"
-=======
-                  className="w-15 text-center h-8 text-black"
->>>>>>> main
                 />
                 <button
                   onClick={() => handleIncrease(index)}
@@ -265,12 +202,7 @@ const HomePage = () => {
                   +
                 </button>
               </div>
-<<<<<<< HEAD
-              <button className="bg-white text-black w-full py-2 rounded-md mb-2">
-                Thêm vào giỏ
-              </button>
-              <button className="bg-white text-black w-full py-2 rounded-md">
-=======
+
               <button
                 onClick={() => {
                   addToCart(product);
@@ -285,14 +217,11 @@ const HomePage = () => {
                 className="bg-white text-black w-full py-2 rounded-md"
                 onClick={() => handleViewDetails(product)} // Open modal on click
               >
->>>>>>> main
                 Xem chi tiết
               </button>
             </div>
           ))}
         </div>
-<<<<<<< HEAD
-=======
 
         {/* Modal (Popup Window) */}
         {isModalOpen && selectedProduct && (
@@ -319,7 +248,6 @@ const HomePage = () => {
             </div>
           </div>
         )}
->>>>>>> main
       </div>
     </div>
   );
